@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'tomato_constant.dart';
+import 'tomato_entity.dart';
+
 class TomatoStartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -58,6 +61,25 @@ class TomatoStartPage extends StatelessWidget {
       ),
     );
   }
+}
+class SelectTypeWidget extends StatefulWidget {
+  @override
+  _SelectTypeWidgetState createState() => _SelectTypeWidgetState();
+}
+
+class _SelectTypeWidgetState extends State<SelectTypeWidget> {
+  int selectIndex = 0;
+  List<TomatoTypeItem> list = EntityFactory.builDefaultTypeList();
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+
+//  Widget buildItem(TomatoTypeItem item){
+//    return new
+//  }
+
+
 
 }
 
