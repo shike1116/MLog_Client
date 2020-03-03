@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'tomato/tomato_start_page.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -91,21 +93,30 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
+            buildItem("创建番茄", (){
+              Navigator.push(
+                context,
+                new MaterialPageRoute(builder: (context) => new TomatoStartPage()),
+              );
+            }),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+       // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+  
+  Widget buildItem(String title, Function function){
+    return new InkWell(
+      onTap: function,
+      child: new Card(
+        child: new Container(
+          alignment: Alignment.centerLeft,
+          margin: EdgeInsets.symmetric(horizontal: 10),
+          height: 50,
+          child: new Text(title),
+        ),
+      ),
     );
   }
 }
