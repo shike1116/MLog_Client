@@ -99,6 +99,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 new MaterialPageRoute(builder: (context) => new TomatoStartPage()),
               );
             }),
+            buildItem("番茄运行中", (){
+              Navigator.push(
+                context,
+                new MaterialPageRoute(builder: (context) => new TomatoStartPage()),
+              );
+            }),
           ],
         ),
       ),
@@ -119,4 +125,5 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+
 }
