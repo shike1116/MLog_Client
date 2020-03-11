@@ -78,7 +78,7 @@ class TomatoStartPage extends StatelessWidget {
       //边框设置
       decoration: new BoxDecoration(
         //背景
-        color: Colors.white,
+        color: Colors.transparent,
         //设置四周圆角 角度
         borderRadius: BorderRadius.all(Radius.circular(50.0)),
         //设置四周边框

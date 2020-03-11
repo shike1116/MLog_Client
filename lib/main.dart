@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mlog/tomato/tomato_running_page.dart';
 
 import 'tomato/tomato_start_page.dart';
 
@@ -102,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
             buildItem("番茄运行中", (){
               Navigator.push(
                 context,
-                new MaterialPageRoute(builder: (context) => new TomatoStartPage()),
+                new MaterialPageRoute(builder: (context) => new TomatoRunningPage()),
               );
             }),
           ],
