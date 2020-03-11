@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:mlog/tomato/tomato_manager.dart';
 
-import 'tomato_constant.dart';
-import 'tomato_entity.dart';
+import '../model/tomato_entity.dart';
+import 'tomato_running_page.dart';
 
 class TomatoStartPage extends StatelessWidget {
+  SelectTypeWidget  selectTypeWidget;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("番茄闹钟"),
       ),
-      body: buildContent(),
+      body: buildContent(context),
     );
   }
 
-  Widget buildContent(){
+  Widget buildContent(BuildContext context){
+    selectTypeWidget = new SelectTypeWidget();
     return new Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -22,11 +25,11 @@ class TomatoStartPage extends StatelessWidget {
         buildTip(),
         Padding(
           padding: const EdgeInsets.only(left: 12, right: 12, top: 24 ,bottom: 24),
-          child: new SelectTypeWidget(),
+          child: selectTypeWidget,
         ),
         Padding(
           padding: const EdgeInsets.only(top: 24),
-          child: buildStartButton(),
+          child: buildStartButton(context),
         )
       ],
     );
@@ -69,56 +72,63 @@ class TomatoStartPage extends StatelessWidget {
     );
   }
 
-  Widget buildStartButton(){
-    return Container(
-      //设置 child 居中
-      alignment: Alignment(0, 0),
-      height: 50,
-      width: 180,
-      //边框设置
-      decoration: new BoxDecoration(
-        //背景
-        color: Colors.transparent,
-        //设置四周圆角 角度
-        borderRadius: BorderRadius.all(Radius.circular(50.0)),
-        //设置四周边框
-        border: new Border.all(width: 1, color: Colors.indigo),
-      ),
-      child: Text(
-          "开始计时",
-          style: TextStyle(
-            color: Colors.indigo,
-            fontSize: 15
-          )
+  Widget buildStartButton(BuildContext context){
+    return GestureDetector(
+      onTap: (){
+        startWorkClock(context);
+      },
+      behavior: HitTestBehavior.opaque,
+      child: Container(
+        //设置 child 居中
+        alignment: Alignment(0, 0),
+        height: 50,
+        width: 180,
+        //边框设置
+        decoration: new BoxDecoration(
+          //背景
+          color: Colors.transparent,
+          //设置四周圆角 角度
+          borderRadius: BorderRadius.all(Radius.circular(50.0)),
+          //设置四周边框
+          border: new Border.all(width: 1, color: Colors.indigo),
+        ),
+        child: Text(
+            "开始计时",
+            style: TextStyle(
+              color: Colors.indigo,
+              fontSize: 15
+            )
+        ),
       ),
     );
-//    return Center(
-//      child: SizedBox(
-//        height: 100,
-//        width: 300,
-//        child: new GestureDetector(
-//          onTap: (){
-//            //todo
-//          },
-//          behavior: HitTestBehavior.opaque,
-//          child: new Text("开始记时"),
-//        ),
-//      ),
-//    );
+  }
+
+  void startWorkClock(BuildContext context){
+//    TomatoManager.instance.startWorkClock(context, selectTypeWidget.getSelectItem());
+    Navigator.push(
+      context,
+      new MaterialPageRoute(builder: (context) => new TomatoRunningPage()),
+    );
   }
 }
 class SelectTypeWidget extends StatefulWidget {
   int selectIndex = 0;
+  List<TomatoTypeItem> list = EntityFactory.buildDefaultTypeList();
+  int rowNumber = 3;
   @override
   _SelectTypeWidgetState createState() => _SelectTypeWidgetState();
+
+  TomatoTypeItem getSelectItem(){
+    return list[selectIndex];
+  }
 }
 
 class _SelectTypeWidgetState extends State<SelectTypeWidget> {
 
-  List<TomatoTypeItem> list = EntityFactory.buildDefaultTypeList();
-  int rowNumber = 3;
   @override
   Widget build(BuildContext context) {
+    List<TomatoTypeItem> list = widget.list;
+    int rowNumber = widget.rowNumber;
     List<Widget> columnChilds = new List();
     List<Widget> rowChilds = new List();
     for (int i = 0; i < list.length; i++) {

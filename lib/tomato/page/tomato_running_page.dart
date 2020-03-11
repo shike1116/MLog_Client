@@ -1,5 +1,9 @@
 
 import 'package:flutter/material.dart';
+import '../model/tomato_model.dart';
+import 'package:provider/provider.dart';
+
+import '../tomato_constant.dart';
 
 class TomatoRunningPage extends StatelessWidget {
   @override
@@ -83,31 +87,39 @@ class ClockWidget extends StatefulWidget {
 class _ClockWidgetState extends State<ClockWidget> {
   @override
   Widget build(BuildContext context) {
+   // TomatoClockModel clockModel = Provider.of<TomatoClockModel>(context);
+    TomatoClockModel clockModel = new TomatoClockModel();
+    clockModel.initWorkClock(null);
     return Stack(
       alignment:AlignmentDirectional.center,
       children: <Widget>[
-        buildCircle(),
-        buildTimeText(),
-        buildTitleText()
+        buildCircle(clockModel),
+        buildTimeText(clockModel),
+        buildTitleText(clockModel)
       ],
     );
   }
 
-  Widget buildCircle(){
+  Widget buildCircle(TomatoClockModel clockModel){
     return SizedBox(
       height: 200,
       width: 200,
       child: CircularProgressIndicator(
         backgroundColor: Colors.grey[200],
         valueColor: AlwaysStoppedAnimation(Colors.blue),
-        value: .5,
+        value: clockModel.currentTime / TomatoConstant.CLOCK_LENGTH_WORK,
       ),
     );
   }
 
-  Widget buildTimeText(){
+  Widget buildTimeText(TomatoClockModel clockModel){
+    int left = TomatoConstant.CLOCK_LENGTH_WORK - clockModel.currentTime;
+    int minute = left~/ TomatoConstant.ONE_MINUTE;
+    int second = left % TomatoConstant.ONE_MINUTE;
+    String stMinute = minute >= 10 ? minute.toString() : "0$minute";
+    String stSecond = second >= 10 ? second.toString() : "0$second";
     return new Text(
-      "12:00",
+      "$stMinute:$stSecond",
       style: TextStyle(
         color: Colors.blue,
         fontSize: 48,
@@ -116,7 +128,7 @@ class _ClockWidgetState extends State<ClockWidget> {
     );
   }
 
-  Widget buildTitleText(){
+  Widget buildTitleText(TomatoClockModel clockModel){
     return SizedBox(
       height: 110,
       child: new Text(

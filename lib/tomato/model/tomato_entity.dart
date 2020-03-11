@@ -3,7 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import 'tomato_constant.dart';
+import '../tomato_constant.dart';
 
 class EntityFactory{
   static List<TomatoTypeItem> buildDefaultTypeList(){

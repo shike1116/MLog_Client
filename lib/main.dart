@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mlog/tomato/tomato_running_page.dart';
+import 'package:mlog/tomato/model/tomato_model.dart';
+import 'package:mlog/tomato/page/tomato_running_page.dart';
+import 'package:provider/provider.dart';
 
-import 'tomato/tomato_start_page.dart';
+import 'tomato/page/tomato_start_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,6 +11,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+//    ChangeNotifierProvider.value(
+//        value: new TomatoClockModel(),)
+    //MyHomePage(title: 'Flutter Demo Home Page')
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -23,7 +28,10 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: ChangeNotifierProvider<TomatoClockModel>.value(
+        value: new TomatoClockModel(),
+        child: MyHomePage(title: 'Flutter Demo Home Page'),
+      ),
     );
   }
 }
