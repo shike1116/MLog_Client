@@ -118,7 +118,7 @@ class _ClockWidgetState extends State<ClockWidget> {
 
   Widget buildTitleText(){
     return SizedBox(
-      height: 115,
+      height: 110,
       child: new Text(
         "计时中",
         style: TextStyle(
