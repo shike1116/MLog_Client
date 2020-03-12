@@ -87,8 +87,7 @@ class ClockWidget extends StatefulWidget {
 class _ClockWidgetState extends State<ClockWidget> {
   @override
   Widget build(BuildContext context) {
-   // TomatoClockModel clockModel = Provider.of<TomatoClockModel>(context);
-    TomatoClockModel clockModel = new TomatoClockModel();
+    TomatoClockModel clockModel = Provider.of<TomatoClockModel>(context);
     clockModel.initWorkClock(null);
     return Stack(
       alignment:AlignmentDirectional.center,

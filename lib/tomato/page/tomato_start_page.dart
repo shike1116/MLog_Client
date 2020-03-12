@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mlog/tomato/model/tomato_model.dart';
 import 'package:mlog/tomato/tomato_manager.dart';
+import 'package:provider/provider.dart';
 
 import '../model/tomato_entity.dart';
 import 'tomato_running_page.dart';
@@ -104,7 +106,7 @@ class TomatoStartPage extends StatelessWidget {
   }
 
   void startWorkClock(BuildContext context){
-//    TomatoManager.instance.startWorkClock(context, selectTypeWidget.getSelectItem());
+    TomatoManager.instance.startWorkClock(context, selectTypeWidget.getSelectItem());
     Navigator.push(
       context,
       new MaterialPageRoute(builder: (context) => new TomatoRunningPage()),

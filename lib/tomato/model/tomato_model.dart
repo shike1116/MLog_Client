@@ -28,7 +28,7 @@ class TomatoClockModel with ChangeNotifier{
       clockState = TomatoConstant.STATE_WORK_END;
     }
     notifyListeners();
-    return currentTime >= TomatoConstant.CLOCK_LENGTH_WORK && clockState != TomatoConstant.STATE_WORK;
+    return currentTime <= TomatoConstant.CLOCK_LENGTH_WORK && clockState == TomatoConstant.STATE_WORK;
   }
 
 

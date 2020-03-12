@@ -25,7 +25,7 @@ class TomatoManager {
   Timer _countTimer;
 
   void startWorkClock(BuildContext context, TomatoTypeItem type){
-    TomatoClockModel _clockModel = Provider.of<TomatoClockModel>(context);
+    TomatoClockModel _clockModel = Provider.of<TomatoClockModel>(context, listen: false);
     if(_clockModel != null){
       _clockModel.initWorkClock(type);
     }
@@ -34,8 +34,7 @@ class TomatoManager {
       _countTimer = null;
     }
     _countTimer = new Timer.periodic(new Duration(seconds: 1), (timer) {
-
-      TomatoClockModel _clockModel = Provider.of<TomatoClockModel>(context);
+      TomatoClockModel _clockModel = Provider.of<TomatoClockModel>(context, listen: false);
       if(_clockModel != null){
         bool isContinue  = _clockModel.alarmWorkClock();
         if(!isContinue){

@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
 //    ChangeNotifierProvider.value(
 //        value: new TomatoClockModel(),)
     //MyHomePage(title: 'Flutter Demo Home Page')
-    return MaterialApp(
+    Widget widget = MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -28,10 +28,12 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: ChangeNotifierProvider<TomatoClockModel>.value(
-        value: new TomatoClockModel(),
-        child: MyHomePage(title: 'Flutter Demo Home Page'),
-      ),
+      home: MyHomePage(title: 'Flutter Demo Home Page')
+    );
+
+    return ChangeNotifierProvider<TomatoClockModel>.value(
+      value: new TomatoClockModel(),
+      child: widget,
     );
   }
 }
